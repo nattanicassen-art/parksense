@@ -77,6 +77,41 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 .tl{aspect-ratio:3/4;border-radius:12px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;box-shadow:inset 0 -4px 0 #0003;font-size:12px}.tl b{font-size:18px}.tl span{font-size:14px}.tl.f{background:var(--g)}.tl.o{background:var(--r)}.tl.fl2{animation:fl 1.4s}
 .note{text-align:center;color:var(--mu);font-size:13px;margin:14px 0}
 .enter.back{display:block;margin:0 auto;background:linear-gradient(135deg,#0f766e,#1e3a8a);color:#fff;animation:none}
+/* ---- มุมมองสมจริง ---- */
+.sp{gap:0;background:linear-gradient(#3b4452,#2c3541);padding:8px 6px;border-radius:12px}
+.sp i{height:clamp(46px,10vw,72px);aspect-ratio:auto;position:relative;display:block;border-radius:0;box-shadow:none;border-left:2px solid #ffffffd0;font-size:0;transition:background .4s}
+.sp i:last-child{border-right:2px solid #ffffffd0}
+.sp i.f{background:#22c55e38;box-shadow:inset 0 0 0 1px #22c55e88}
+.sp i.f::after{content:'P';position:absolute;inset:0;display:grid;place-items:center;color:#4ade80;font-weight:600;font-size:clamp(13px,3.6vw,20px)}
+.sp i.o{background:transparent}
+.sp i.o::before,.sp i.o::after{content:'';position:absolute;left:16%;right:16%;top:7%;bottom:7%;border-radius:38% 38% 32% 32%/22% 22% 18% 18%}
+.sp i.o::before{background:var(--cc);box-shadow:0 4px 6px #0007}
+.sp i.o::after{background:linear-gradient(transparent 14%,#bfe3ff 14% 34%,#0000002e 34% 60%,transparent 60% 66%,#bfe3ffcc 66% 82%,transparent 82%)}
+.sp i.fl2{animation:none}.sp i.f.fl2{animation:fg 1.2s}@keyframes fg{0%{background:#22c55ecc}100%{background:#22c55e38}}
+.sp i.o.fl2::before,.sp i.o.fl2::after{animation:pk1 .9s ease-out}@keyframes pk1{from{transform:translateY(90%);opacity:0}to{transform:none;opacity:1}}
+.dg{display:block;padding:0}
+.lot{background:linear-gradient(#3b4452,#2c3541);padding:14px 12px}
+.row{display:grid;grid-template-columns:repeat(5,1fr)}
+.bay{position:relative;aspect-ratio:1/1.85;border-left:3px solid #ffffffd9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;transition:background .4s}
+.row .bay:last-child{border-right:3px solid #ffffffd9}
+.bay b{position:absolute;left:0;right:0;text-align:center;font-size:11px;color:#ffffffb0;font-weight:500}.bay.tp b{top:4px}.bay.bt b{bottom:4px}
+.bay.f{background:#22c55e30;box-shadow:inset 0 0 0 2px #22c55e90}
+.bay.f em{font-style:normal;font-size:clamp(24px,7vw,38px);font-weight:600;color:#4ade80;line-height:1}.bay.f i{font-style:normal;font-size:11px;color:#86efac}
+.bay svg{width:64%;height:auto;filter:drop-shadow(0 6px 6px #0009)}.bay.bt svg{transform:rotate(180deg)}
+.bay.o.fl2.tp svg{animation:pk1 .9s ease-out}.bay.o.fl2.bt svg{animation:pk2 .9s ease-out}@keyframes pk2{from{transform:translateY(-90%) rotate(180deg);opacity:0}to{transform:rotate(180deg);opacity:1}}
+.bay.f.fl2{animation:fg2 1.2s}@keyframes fg2{0%{background:#22c55ecc}100%{background:#22c55e30}}
+.aisle{text-align:center;color:#ffffff77;letter-spacing:10px;font-size:16px;padding:14px 0;margin:6px 0;background:repeating-linear-gradient(90deg,#fbbf2466 0 20px,transparent 20px 40px) center/100% 3px no-repeat}
+.lane u{top:6px;font-size:0;width:26px;height:52px}.lane u svg{width:26px;height:52px;display:block}
+.lane u.in svg{transform:rotate(90deg)}.lane u.out svg{transform:rotate(-90deg)}.lane u.out.go{transform:none}
+@keyframes mv2{from{transform:translateX(-110%) scaleX(-1)}to{transform:translateX(100vw) scaleX(-1)}}
+.cars{animation:mv2 14s linear infinite}
+.dg{padding:10px 6px 4px}
+.plan{display:block;width:100%;max-width:460px;margin:0 auto;font-family:inherit}
+.plan .ln{stroke:var(--tx);stroke-width:1.3;fill:none}
+.plan .bf{fill:#22c55e30;stroke:#16a34a;stroke-width:2.6}.plan .bo{fill:#ef444420;stroke:var(--tx);stroke-width:1.1}
+.plan .bf.fl2{animation:bfl 1.4s}@keyframes bfl{0%{fill:#22c55eee}100%{fill:#22c55e30}}
+.plan text{fill:var(--tx)}.plan .mu{fill:var(--mu)}.plan .ok{fill:#15803d;font-weight:600}
+@media(prefers-color-scheme:dark){.plan .ok{fill:#4ade80}}
 @media(max-width:520px){.sp{gap:4px}.big{font-size:40px}}
 </style>
 </head>
@@ -86,20 +121,22 @@ header{display:flex;justify-content:space-between;align-items:center;margin-bott
 <header><div class="lg" onclick="home()" style="cursor:pointer" title="กลับหน้าแรก"><i>P</i><div><b>ParkSense</b><small>ป้ายแสดงสถานะที่จอดรถ</small></div></div><div class="rt"><span class="live"><b></b>LIVE</span><span id="clk"></span></div></header>
 <div class="sum"><div><small>ที่จอดว่างทั้งอาคาร</small><h2>ทางเข้า</h2><div class="gl"><span class="lamp g" id="gl"></span><span id="gt">เปิดรับรถ</span></div></div><div><div class="big" id="tot">0</div><small id="all"></small></div></div><div class="pbar"><b id="pb"></b></div>
 <section class="bld"><div class="roof"></div><div id="bld"></div></section>
-<div class="rd"><div class="lane"><em>⬇ ทางเข้า</em><u class="in" id="cin">🚗</u></div><div class="lane"><em>ทางออก ⬆</em><u class="out" id="cout">🚙</u></div></div>
+<div class="rd"><div class="lane"><em>⬇ ทางเข้า</em><u class="in" id="cin"></u></div><div class="lane"><em>ทางออก ⬆</em><u class="out" id="cout"></u></div></div>
 <div class="tk"><b>📡 รถเข้า-ออกล่าสุด</b><span id="tk"></span></div>
 <div class="lgd"><span><i style="background:var(--g)"></i>ว่าง</span><span><i style="background:var(--r)"></i>ไม่ว่าง</span></div>
 </div>
 <script>
 const FL=['ชั้น 1','ชั้น 2','ชั้น 3','ชั้น 4'],N=10,$=id=>document.getElementById(id);
+const PAL=['#e11d48','#2563eb','#f1f5f9','#facc15','#16a34a','#7c3aed','#f97316','#475569'],CAR='<svg viewBox="0 0 40 80"><rect x="0" y="12" width="5" height="15" rx="2" fill="#111"/><rect x="35" y="12" width="5" height="15" rx="2" fill="#111"/><rect x="0" y="53" width="5" height="15" rx="2" fill="#111"/><rect x="35" y="53" width="5" height="15" rx="2" fill="#111"/><rect x="3" y="2" width="34" height="76" rx="13" style="fill:var(--cc)"/><rect x="7" y="15" width="26" height="15" rx="5" fill="#bfe3ff"/><rect x="9" y="33" width="22" height="20" rx="5" fill="#0003"/><rect x="8" y="56" width="24" height="10" rx="4" fill="#bfe3ff" opacity=".85"/><rect x="6" y="3" width="9" height="4" rx="2" fill="#fde68a"/><rect x="25" y="3" width="9" height="4" rx="2" fill="#fde68a"/><rect x="6" y="73" width="9" height="3" rx="1.5" fill="#ef4444"/><rect x="25" y="73" width="9" height="3" rx="1.5" fill="#ef4444"/></svg>';
+const CARG=CAR.replace(/^<svg[^>]*>|<\/svg>$/g,'');
 let cf=null,sp=FL.map((_,f)=>Array.from({length:N},()=>Math.random()<[.75,.6,.4,.25][f]?1:0)),logs=[];
 const nf=f=>sp[f].filter(x=>!x).length,tm=()=>new Date().toLocaleTimeString('th-TH');
 $('bld').innerHTML=[3,2,1,0].map(f=>`<div class="fl" onclick="openF(${f})"><div class="hd"><span class="lamp g" id="lp${f}"></span><div><b>${FL[f]}</b><small id="st${f}"></small></div><div class="cnt"><b id="ct${f}"></b><small>ว่าง / ${N}</small></div><span class="chev">›</span></div><div class="sp">${sp[f].map((_,i)=>`<i id="s${f}-${i}" title="ช่อง ${i+1}"></i>`).join('')}</div></div>`).join('');
-function paint(f,i,flash){if(i!=null){const e=$(`s${f}-${i}`);e.className=sp[f][i]?'o':'f';if(flash){e.classList.remove('fl2');void e.offsetWidth;e.classList.add('fl2')}}
+function paint(f,i,flash){if(i!=null){const e=$(`s${f}-${i}`);e.className=sp[f][i]?'o':'f';e.style.setProperty('--cc',PAL[(f*7+i*3)%PAL.length]);if(flash){e.classList.remove('fl2');void e.offsetWidth;e.classList.add('fl2')}}
  const fr=nf(f);$('ct'+f).textContent=fr;$('lp'+f).className='lamp '+(fr?'g':'r');$('st'+f).textContent=fr===0?'เต็ม':fr/N>.25?'ว่าง':'เกือบเต็ม';
  const t=FL.reduce((s,_,k)=>s+nf(k),0);$('tot').textContent=t;const u=Math.round(100-t/(N*FL.length)*100);$('all').textContent='จาก '+N*FL.length+' ช่อง · ใช้งาน '+u+'%';$('pb').style.width=u+'%';$('pb').style.background=u<60?'#22c55e':u<85?'#f59e0b':'#ef4444';$('lp'+f).closest('.fl').classList.toggle('full',!fr);$('gl').className='lamp '+(t?'g':'r');$('gt').textContent=t?'เปิดรับรถ':'ที่จอดเต็ม';$('lt').textContent=t;$('ll').className='lamp '+(t?'g':'r');if(cf===f)drawD(i,flash)}
 sp.forEach((r,f)=>{r.forEach((_,i)=>paint(f,i,0))});
-function car(id){const e=$(id);e.classList.remove('go');void e.offsetWidth;e.classList.add('go')}
+function car(id){const e=$(id);e.style.setProperty('--cc',PAL[Math.floor(Math.random()*PAL.length)]);e.classList.remove('go');void e.offsetWidth;e.classList.add('go')}
 function evt(){const t=FL.reduce((s,_,f)=>s+nf(f),0),p=Math.min(.85,Math.max(.15,t/(N*FL.length))),enter=t>0&&Math.random()<p,want=enter?0:1;
  let c=[];sp.forEach((r,f)=>r.forEach((v,i)=>{if(v===want)c.push([f,i])}));
  if(c.length){if(enter&&Math.random()<.6){const lo=Math.min(...c.map(x=>x[0]));c=c.filter(x=>x[0]===lo)}
@@ -109,12 +146,26 @@ function evt(){const t=FL.reduce((s,_,f)=>s+nf(f),0),p=Math.min(.85,Math.max(.15
 function enter(){$('land').classList.add('hide');$('main').classList.remove('hide');scrollTo(0,0)}
 /* ---- กดเข้าดูแต่ละชั้น (ดูอย่างเดียว ไม่มีระบบจอง) ---- */
 document.body.insertAdjacentHTML('beforeend',`<div class="wrap hide" id="det"><header><div class="lg" onclick="closeF()" style="cursor:pointer"><i>‹</i><div><b id="dt">ชั้น</b><small>ดูสถานะเท่านั้น · ไม่สามารถจองได้</small></div></div><div class="rt"><span class="live"><b></b>LIVE</span></div></header><div class="sum"><div><small>ที่ว่างในชั้นนี้</small><div class="gl"><span class="lamp g" id="dl"></span><span id="ds"></span></div></div><div><div class="big" id="dc">0</div><small id="dn"></small></div></div><div class="bld"><div class="roof"></div><div class="dg" id="dg"></div></div><div class="note">👀 โหมดดูอย่างเดียว ไม่มีระบบจองช่องจอด</div><button class="enter back" onclick="closeF()">‹ กลับไปดูทุกชั้น</button></div>`);
-function drawD(ch,fx){if(cf==null)return;const fr=nf(cf);$('dt').textContent=FL[cf];$('dc').textContent=fr;$('dn').textContent='จาก '+N+' ช่อง';$('dl').className='lamp '+(fr?'g':'r');$('ds').textContent=fr?'มีที่ว่าง':'ชั้นนี้เต็ม';$('dg').innerHTML=sp[cf].map((v,i)=>`<div class="tl ${v?'o':'f'}${fx&&i===ch?' fl2':''}"><b>${String(i+1).padStart(2,'0')}</b><span>${v?'🚗':'ว่าง'}</span></div>`).join('')}
+/* ---- ผังช่องจอดแบบเฉียง 72° (ตามแบบสถาปัตยกรรม) ---- */
+function planSVG(ch,fx){const A=190,Y0=100,W=46,L=150,cs=Math.cos(Math.PI/10),sn=Math.sin(Math.PI/10),Lx=L*cs,Ly=L*sn,Y=k=>Y0+k*W;
+ let s=`<svg class="plan" viewBox="0 0 345 650"><text class="mu" x="12" y="28" style="font-size:15px">${FL[cf]}</text>`;
+ s+=`<path class="ln" d="M${A},${Y0-10}V${Y(10)+40}M${A+125},${Y0-10}V${Y(10)+40}"/>`;
+ 
+ for(let k=0;k<=10;k++)s+=`<path class="ln" d="M${A},${Y(k)}L${A-Lx},${Y(k)-Ly}"/>`;
+ for(let k=0;k<10;k++){const v=sp[cf][k],yk=Y(k),y1=Y(k+1),ym=(yk+y1)/2,cx=A-85*cs,cy=ym-85*sn,col=PAL[(cf*7+k*3)%PAL.length],g='translate(-20 -40)';
+  s+=`<polygon class="${v?'bo':'bf'}${!v&&fx&&k===ch?' fl2':''}" points="${A},${yk} ${A-Lx},${yk-Ly} ${A-Lx},${y1-Ly} ${A},${y1}"/><text class="mu" x="${A-132*cs}" y="${ym-132*sn+4}" text-anchor="middle" style="font-size:11px">${String(k+1).padStart(2,'0')}</text>`;
+  if(!v)s+=`<text class="ok" x="${cx}" y="${cy+6}" text-anchor="middle" style="font-size:16px">ว่าง</text>`;
+  else if(fx&&k===ch)s+=`<g style="--cc:${col}"><g transform="rotate(90) scale(.8) ${g}">${CARG}</g><animateMotion dur="1.7s" fill="freeze" rotate="auto" path="M${A+55},${Y(10)+80}L${A+55},${ym+95}Q${cx+114},${cy+37} ${cx},${cy}"/></g>`;
+  else s+=`<g style="--cc:${col}" transform="translate(${cx} ${cy}) rotate(-72) scale(.8) ${g}">${CARG}</g>`}
+ for(const y of [Y(8)+10,Y(5),Y(2)])s+=`<path class="ln" d="M${A+50},${y+14}L${A+62},${y}L${A+74},${y+14}"/>`;
+ s+=`<text class="mu" x="${A+62}" y="${Y(10)+62}" text-anchor="middle" style="font-size:12px">ทางเข้า ↑</text><rect class="bf" x="12" y="612" width="16" height="10"/><text x="34" y="621" style="font-size:12px">ว่าง</text><rect class="bo" x="84" y="612" width="16" height="10"/><text x="106" y="621" style="font-size:12px">มีรถจอด</text></svg>`;
+ return s}
+function drawD(ch,fx){if(cf==null)return;const fr=nf(cf);$('dt').textContent=FL[cf];$('dc').textContent=fr;$('dn').textContent='จาก '+N+' ช่อง';$('dl').className='lamp '+(fr?'g':'r');$('ds').textContent=fr?'มีที่ว่าง':'ชั้นนี้เต็ม';$('dg').innerHTML=planSVG(ch,fx)}
 function openF(f){cf=f;drawD();$('main').classList.add('hide');$('det').classList.remove('hide');scrollTo(0,0)}
 function closeF(){cf=null;$('det').classList.add('hide');$('main').classList.remove('hide');scrollTo(0,0)}
 function home(){$('main').classList.add('hide');$('land').classList.remove('hide');scrollTo(0,0)}
 setInterval(()=>{$('clk').textContent=tm()},1000);$('clk').textContent=tm();
-setTimeout(evt,800);
+$('cin').innerHTML=CAR;$('cout').innerHTML=CAR;setTimeout(evt,800);
 </script>
 </body>
 </html>
